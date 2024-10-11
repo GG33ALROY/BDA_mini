@@ -1,0 +1,50 @@
+track_name,artist,genre,danceability,energy,valence
+Shape of You,Ed Sheeran,Pop,0.825,0.652,0.931
+Blinding Lights,The Weeknd,Synth-pop,0.514,0.73,0.334
+Chaiyya Chaiyya,Sukhwinder Singh,Bollywood,0.721,0.843,0.682
+Uptown Funk,Mark Ronson ft. Bruno Mars,Funk,0.856,0.921,0.894
+Kal Ho Naa Ho,Sonu Nigam,Bollywood,0.534,0.721,0.432
+Don't Start Now,Dua Lipa,Pop,0.793,0.793,0.679
+Balam Pichkari,Vishal-Shekhar,Bollywood,0.812,0.901,0.756
+Despacito,Luis Fonsi & Daddy Yankee,Reggaeton,0.694,0.815,0.816
+Senorita,Shawn Mendes & Camila Cabello,Pop,0.759,0.548,0.75
+Tum Hi Ho,Arijit Singh,Bollywood,0.342,0.432,0.201
+Bad Guy,Billie Eilish,Electropop,0.701,0.425,0.562
+Zingaat,Ajay-Atul,Bollywood,0.891,0.945,0.821
+Dance Monkey,Tones and I,Electropop,0.824,0.588,0.513
+Channa Mereya,Arijit Singh,Bollywood,0.421,0.384,0.234
+Shallow,Lady Gaga & Bradley Cooper,Country rock,0.385,0.572,0.322
+Malhari,Vishal Dadlani,Bollywood,0.765,0.912,0.689
+Someone You Loved,Lewis Capaldi,Pop,0.501,0.405,0.446
+Ghungroo,Arijit Singh & Shilpa Rao,Bollywood,0.782,0.719,0.653
+Old Town Road,Lil Nas X,Country rap,0.878,0.619,0.647
+Kabira,Tochi Raina & Rekha Bhardwaj,Bollywood,0.512,0.435,0.321
+7 Rings,Ariana Grande,Pop,0.778,0.317,0.333
+Chikni Chameli,Shreya Ghoshal,Bollywood,0.801,0.876,0.712
+Happier,Marshmello & Bastille,EDM,0.687,0.792,0.671
+London Thumakda,Labh Janjua,Bollywood,0.845,0.923,0.781
+Sugar,Maroon 5,Pop rock,0.748,0.716,0.959
+Kar Gayi Chull,Badshah & Neha Kakkar,Bollywood,0.856,0.812,0.745
+Watermelon Sugar,Harry Styles,Pop rock,0.548,0.816,0.557
+Gerua,Arijit Singh & Antara Mitra,Bollywood,0.623,0.712,0.542
+Señorita,Camila Cabello & Shawn Mendes,Pop,0.759,0.548,0.75
+Nashe Si Chadh Gayi,Arijit Singh,Bollywood,0.712,0.801,0.623
+Havana,Camila Cabello,Pop,0.765,0.523,0.394
+Maahi Ve,A.R. Rahman,Bollywood,0.456,0.512,0.378
+Thank U Next,Ariana Grande,Pop,0.717,0.653,0.412
+Buzz,Aastha Gill ft. Badshah,Bollywood,0.823,0.745,0.678
+High Hopes,Panic! At The Disco,Pop rock,0.736,0.928,0.679
+Cheap Thrills,Sia,Pop,0.7,0.712,0.673
+Dilbar,Neha Kakkar,Bollywood,0.823,0.812,0.745
+I Don't Care,Ed Sheeran & Justin Bieber,Pop,0.798,0.675,0.842
+Bekhayali,Sachet Tandon,Bollywood,0.534,0.623,0.312
+Closer,The Chainsmokers ft. Halsey,EDM,0.748,0.524,0.661
+Chogada,Darshan Raval & Asees Kaur,Bollywood,0.834,0.876,0.789
+Believer,Imagine Dragons,Pop rock,0.776,0.78,0.666
+Ghar More Pardesiya,Shreya Ghoshal,Bollywood,0.534,0.623,0.478
+Girls Like You,Maroon 5 ft. Cardi B,Pop,0.851,0.541,0.682
+Galliyan,Ankit Tiwari,Bollywood,0.423,0.512,0.321
+Stay With Me,Sam Smith,Soul,0.422,0.386,0.424
+Badtameez Dil,Benny Dayal,Bollywood,0.801,0.845,0.723
+Can't Stop the Feeling!,Justin Timberlake,Pop,0.694,0.864,0.926
+Kaun Tujhe,Palak Muchhal,Bollywood,0.412,0.456,0.289

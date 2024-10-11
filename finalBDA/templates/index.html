@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Song Recommender</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+        }
+        h1 {
+            color: #a855f7;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        form {
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(168,85,247,0.3);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #d8b4fe;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #4c1d95;
+            border-radius: 4px;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #8b5cf6;
+            color: #1a7b9b;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #7c3aed;
+        }
+        #results {
+            margin-top: 20px;
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(168,85,247,0.3);
+        }
+        .recommendation {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #3d3d3d;
+            border-radius: 4px;
+            border-left: 4px solid #a855f7;
+        }
+        .recommendation strong {
+            color: #d8b4fe;
+        }
+        .recommendation p {
+            margin: 5px 0 0;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <h1>Song Recommender</h1>
+    <form id="recommendationForm">
+        <label for="song">Song:</label>
+        <input type="text" id="song" name="song" required>
+        
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist" name="artist" required>
+        
+        <input type="submit" value="Get Recommendations">
+    </form>
+
+    <div id="recommendations"></div>
+
+    <script>
+        document.getElementById('recommendationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const song = document.getElementById('song').value;
+            const artist = document.getElementById('artist').value;
+            
+            fetch('/recommend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `song=${encodeURIComponent(song)}&artist=${encodeURIComponent(artist)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                const recommendationsDiv = document.getElementById('recommendations');
+                recommendationsDiv.innerHTML = '';
+                
+                if (data.error) {
+                    recommendationsDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+                } else {
+                    const h2 = document.createElement('h2');
+                    h2.textContent = 'Recommendations:';
+                    recommendationsDiv.appendChild(h2);
+                    
+                    data.forEach(song => {
+                        const div = document.createElement('div');
+                        div.className = 'recommendation';
+                        div.innerHTML = `
+                            <p><strong>Artist:</strong> ${song.artist}</p>
+                            <p><strong>Track:</strong> ${song.track_name}</p>
+                            <p><strong>Genre:</strong> ${song.genre}</p>
+                        `;
+                        recommendationsDiv.appendChild(div);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const recommendationsDiv = document.getElementById('recommendations');
+                recommendationsDiv.innerHTML = '<p>An error occurred while fetching recommendations.</p>';
+            });
+        });
+    </script>
+</body>
+</html>
