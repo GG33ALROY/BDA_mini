@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Recommender</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #bb86fc;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #song-select {
+            width: 100%;
+            margin-bottom: 40px; /* Increased margin to create space */
+        }
+        #recommend-button {
+            background-color: #bb86fc;
+            color: #000000;
+            border: none;
+            padding: 12px 24px; /* Slightly larger button */
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 40px auto; /* Added top and bottom margin */
+            border-radius: 5px;
+        }
+        #recommend-button:hover {
+            background-color: #9965f4;
+        }
+        #recommendations {
+            margin-top: 40px; /* Increased top margin */
+        }
+        .recommendation {
+            background-color: #1f1f1f;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #bb86fc;
+        }
+        .recommendation strong {
+            color: #bb86fc;
+        }
+        /* Custom styles for Select2 */
+        .select2-container--default .select2-selection--single {
+            background-color: #1f1f1f;
+            border: 1px solid #bb86fc;
+            border-radius: 4px;
+            height: 38px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #ffffff;
+            line-height: 38px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 36px;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #bb86fc;
+            color: #000000;
+        }
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            border: 1px solid #bb86fc;
+        }
+        .select2-dropdown {
+            background-color: #1f1f1f;
+            border: 1px solid #bb86fc;
+        }
+        .select2-container--default .select2-results__option[aria-selected=true] {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Song Recommender</h1>
+    <select id="song-select">
+        <option value="">Select a song</option>
+    </select>
+    <button id="recommend-button">Get Recommendations</button>
+    <div id="recommendations"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#song-select').select2({
+                ajax: {
+                    url: '/get_songs',
+                    dataType: 'json',
+                    processResults: function(data) {
+                        return {
+                            results: data.map(function(item) {
+                                return {
+                                    id: JSON.stringify({song: item.track_name, artist: item.artist}),
+                                    text: item.track_name + ' - ' + item.artist
+                                };
+                            })
+                        };
+                    }
+                }
+            });
+
+            $('#recommend-button').click(function() {
+                var selected = $('#song-select').select2('data')[0];
+                if (selected) {
+                    var data = JSON.parse(selected.id);
+                    $.post('/recommend', data, function(recommendations) {
+                        var recommendationsHtml = '';
+                        recommendations.forEach(function(rec) {
+                            recommendationsHtml += '<div class="recommendation">';
+                            recommendationsHtml += '<strong>' + rec.track_name + '</strong> by ' + rec.artist;
+                            recommendationsHtml += '<br>Genre: ' + rec.genre;
+                            recommendationsHtml += '</div>';
+                        });
+                        $('#recommendations').html(recommendationsHtml);
+                    });
+                } else {
+                    alert('Please select a song');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
